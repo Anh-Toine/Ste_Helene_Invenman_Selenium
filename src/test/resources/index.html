@@ -1,0 +1,132 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<style>
+	table{border: 1px solid black;}
+	th{border: 1px solid black;}
+	td{border: 1px solid black;}
+</style>
+<div id="productPage">
+	<form @submit.prevent="addProduct">
+		<input placeholder="Bar Code" v-model="barCode"/>
+		<input placeholder="Product Name" v-model="productName"/>
+		<input placeholder="Brand" v-model="brand"/>
+		<input placeholder="Price" v-model="price"/>
+		<input placeholder="Quantity" v-model="quantity"/>
+		<input placeholder="Quantity Sold" v-model="quantitySold"/>
+		<input placeholder="Category Id" v-model="categoryId"/>
+		<button type="submit">Ajouter</button>
+	</form>
+
+	<form @submit.prevent="updateProduct">
+		<input placeholder="Bar Code" v-model="updateBarCode"/><BR>
+		<input placeholder="Product Name" v-model="updateProductName"/><br>
+		<input placeholder="Brand" v-model="updateBrand"/><br>
+		<input placeholder="Price" v-model="updatePrice"/><br>
+		<input placeholder="Quantity" v-model="updateQuantity"/><br>
+		<input placeholder="Quantity Sold" v-model="updateQuantitySold"/><br>
+		<input placeholder="Category Id" v-model="updateCategoryId"/><br>
+		<button type="submit">Changer</button>
+	</form>
+	
+	<table style="border: 1px;">
+		<thead>
+			<tr>
+				<th>Bar Code</th>
+				<th>Product Name</th>
+				<th>Brand</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>Quantity Sold</th>
+				<th>Category Id</th>
+				<th>Options</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr v-for="(product,index) in products" :key="index">
+				<td v-text="product.barCode"></td>
+				<td v-text="product.productName"></td>
+				<td v-text="product.brand"></td>
+				<td v-text="product.price"></td>
+				<td v-text="product.quantity"></td>
+				<td v-text="product.quantitySold"></td>
+				<td v-text="product.categoryId"></td>
+
+				<td><button v-on:click="deleteProduct(product.barCode)">Supprimer</button></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<script>
+
+	new Vue({
+		el: '#productPage',
+		data: {
+			barCode:'',
+			productName:'',
+			brand:'',
+			price:'',
+			quantity:'',
+			quantitySold:'',
+			categoryId:'',
+			updateBarCode:'',
+			updateProductName:'',
+			updateBrand:'',
+			updatePrice:'',
+			updateQuantity:'',
+			updateQuantitySold:'',
+			updateCategoryId:'',
+			products: []
+		},
+		methods: 
+		{
+			addProduct(){
+				var newProduct = {
+					barCode:this.barCode,
+					productName:this.productName,
+					brand:this.brand,
+					price:this.price,
+					quantity:this.quantity,
+					quantitySold:this.quantitySold,
+					categoryId:this.categoryId
+				}
+				
+				var json = JSON.stringify(newProduct);
+				axios.post("http://localhost:8080/product", 
+							json, 
+							{headers:{'Content-Type': 'application/json'}
+				});
+			},
+			getAllProducts(){
+				axios.get("http://localhost:8080/products")
+				.then(res => {this.products = res.data});
+			},
+			updateProduct(){
+				var updatedProduct ={
+					barCode:this.updateBarCode,
+					productName:this.updateProductName,
+					brand:this.updateBrand,
+					price:this.updatePrice,
+					quantity:this.updateQuantity,
+					quantitySold:this.updateQuantitySold,
+					categoryId:this.updateCategoryId
+				}
+				var updatejson = JSON.stringify(updatedProduct); 
+				axios.put("http://localhost:8080/product/" + this.updateBarCode,
+							updatejson,
+							{headers:{'Content-Type': 'application/json'}})
+
+			},
+			deleteProduct(code){
+				axios.delete('http://localhost:8080/product/'+code)
+				.then((result) => {
+					console.warn(result)
+				})
+			}
+		}, mounted(){
+			this.getAllProducts();
+		}
+			
+	})
+
+</script>

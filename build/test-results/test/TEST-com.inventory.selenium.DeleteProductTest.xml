@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.inventory.selenium.DeleteProductTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-12-16T20:23:35" hostname="Lukass-MacBook-Pro.local" time="21.547">
+  <properties/>
+  <testcase name="delete_product_test()" classname="com.inventory.selenium.DeleteProductTest" time="21.547"/>
+  <system-out><![CDATA[15:23:32.946 [Test worker] DEBUG io.github.bonigarcia.wdm.cache.ResolutionCache - Resolution chrome=96 in cache (valid until 15:33:11 16/12/2021 EST)
+15:23:32.955 [Test worker] DEBUG io.github.bonigarcia.wdm.cache.ResolutionCache - Resolution chrome96=96.0.4664.45 in cache (valid until 13:10:42 17/12/2021 EST)
+15:23:32.955 [Test worker] INFO io.github.bonigarcia.wdm.WebDriverManager - Using chromedriver 96.0.4664.45 (resolved driver for Chrome 96)
+15:23:32.984 [Test worker] DEBUG io.github.bonigarcia.wdm.WebDriverManager - Driver chromedriver 96.0.4664.45 found in cache
+15:23:32.985 [Test worker] INFO io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as /Users/lukas/.cache/selenium/chromedriver/mac64/96.0.4664.45/chromedriver
+]]></system-out>
+  <system-err><![CDATA[Starting ChromeDriver 96.0.4664.45 (76e4c1bb2ab4671b8beba3444e61c0f17584b2fc-refs/branch-heads/4664@{#947}) on port 20011
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+Dec. 16, 2021 3:23:35 P.M. org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+</testsuite>
