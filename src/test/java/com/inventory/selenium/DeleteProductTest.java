@@ -13,8 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SeleniumExtension.class)
 public class DeleteProductTest {
@@ -25,11 +24,6 @@ public class DeleteProductTest {
         this.driver = driver;
     }
 
-//    @BeforeAll
-//    void setup(){
-//        EdgeOptions options = new EdgeOptions();
-//        options.
-//    }
     void sleep(int time){
         try {
             Thread.sleep(time* 1000L);
@@ -37,9 +31,9 @@ public class DeleteProductTest {
             e.printStackTrace();
         }
     }
+
     @Test
-    void delete_product_test(){
-        WebDriverWait wait = new WebDriverWait(driver,10);
+    void all_product_tests(){
         driver.get("file:///Users/lukas/Desktop/index.html");
         sleep(3);
         driver.manage().window().maximize();
@@ -73,6 +67,41 @@ public class DeleteProductTest {
         driver.navigate().refresh();
         sleep(5);
 
+        for(int i = 1 ; i < 8 ; i++){
+            assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody/tr/td["+i+
+                    "]").getText(),is(
+                    "14"));
+        }
+
+        WebElement newBarCode = driver.findElementByXPath("//input[@placeholder='New Bar Code']");
+        newBarCode.sendKeys("14");
+        WebElement newProductName = driver.findElementByXPath("//input[@placeholder='New Product " +
+                "Name']");
+        newProductName.sendKeys("14");
+        WebElement newBrand = driver.findElementByXPath("//input[@placeholder='New Brand']");
+        newBrand.sendKeys("14");
+        WebElement newPrice = driver.findElementByXPath("//input[@placeholder='New Price']");
+        newPrice.sendKeys("14");
+        WebElement newQuantity = driver.findElementByXPath("//input[@placeholder='New Quantity']");
+        newQuantity.sendKeys("14");
+        WebElement newQuantitySold = driver.findElementByXPath("//input[@placeholder='New " +
+                "Quantity " +
+                "Sold']");
+        newQuantitySold.sendKeys("3");
+        WebElement newCategoryId = driver.findElementByXPath("//input[@placeholder='New " +
+                "Category " +
+                "Id']");
+        newCategoryId.sendKeys("14");
+
+        sleep(4);
+        WebElement update = driver.findElement(By.id("updateBtn"));
+        update.click();
+        driver.navigate().refresh();
+
+        WebElement nqs = driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody/tr/td[6]");
+        assertEquals("3", nqs.getText());
+
+        sleep(4);
         WebElement deleteButton = driver.findElement(By.id("deleteBtn"));
         deleteButton.click();
 
