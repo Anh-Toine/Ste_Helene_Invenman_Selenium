@@ -66,20 +66,11 @@ public class DeleteProductTest {
         driver.navigate().refresh();
         sleep(5);
 
-        assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody/tr/td[1]").getText(),is(
-                "14"));
-        assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody/tr/td[2]").getText(),is(
-                "14"));
-        assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody/tr/td[3]").getText(),is(
-                "14"));
-        assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody/tr/td[4]").getText(),is(
-                "14"));
-        assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody/tr/td[5]").getText(),is(
-                "14"));
-        assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody/tr/td[6]").getText(),is(
-                "14"));
-        assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody/tr/td[7]").getText(),is(
-                "14"));
+        for(int u = 1 ; u < 8 ; u++){
+            assertThat(driver.findElementByXPath(String.format("//*[@id=\"productPage\"]/table" +
+                    "/tbody/tr/td[%d]",u)).getText(),is(
+                    "14"));
+        }
         WebElement newBarCode = driver.findElementByXPath("//input[@placeholder='New Bar Code']");
         newBarCode.sendKeys("14");
         WebElement newProductName = driver.findElementByXPath("//input[@placeholder='New Product " +
