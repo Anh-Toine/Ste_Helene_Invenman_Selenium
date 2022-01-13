@@ -23,6 +23,7 @@ tasks.withType(JavaCompile) {
 dependencies {
     implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
     implementation group: 'io.github.bonigarcia', name: 'selenium-jupiter', version: '3.3.5'
+
     testImplementation('org.seleniumhq.selenium:selenium-java:3.141.59')
     testImplementation('org.hamcrest:hamcrest:2.2')
 
