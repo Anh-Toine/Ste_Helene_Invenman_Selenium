@@ -17,10 +17,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 @ExtendWith(SeleniumExtension.class)
-public class AddSupplierTest {
+public class SeleniumSupplierTests {
     private final ChromeDriver driver;
 
-    public AddSupplierTest(ChromeDriver driver) {
+    public SeleniumSupplierTests(ChromeDriver driver) {
         this.driver = driver;
 
         DesiredCapabilities decap = new DesiredCapabilities();
