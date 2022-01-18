@@ -44,7 +44,14 @@ public class SeleniumProductTests {
             driver.get("http://localhost:8081/");
             driver.manage().window().maximize();
 
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"productPage\"]/button")));
+            String loginButtonXP = "//*[@id=\"loginButton\"]/a";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(loginButtonXP)));
+
+            driver.findElementByXPath(loginButtonXP).click();
+
+            String addProductButtonXP = "//*[@id=\"productPage\"]/button";
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(addProductButtonXP)));
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -158,7 +165,7 @@ public class SeleniumProductTests {
                 "/tbody/tr[3]/td[2]");
         assertEquals("Sting",newProductAssert.getText());
 
-        driver.close();
+        driver.quit();
     }
 
     @Test
@@ -182,6 +189,6 @@ public class SeleniumProductTests {
 
         Thread.sleep(3000);
         assertTrue(driver.findElementsByXPath("//*[@id=\"productPage\"]/table/tbody/tr[3]").size() < 1);
-        driver.close();
+        driver.quit();
     }
 }
