@@ -18,6 +18,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SeleniumExtension.class)
 public class SeleniumSupplierTests {
@@ -141,6 +142,30 @@ public class SeleniumSupplierTests {
         WebElement newRepresentative = driver.findElementByXPath("//*[@id=\"supplierPage\"]/table" +
                 "/tbody/tr[1]/td[2]");
         assertEquals("Jonathan B. Thibodeaux",newRepresentative.getText());
+        driver.quit();
+    }
+
+    @Test
+    public void delete_supplier_test() throws InterruptedException {
+        Thread.sleep(5000);
+
+        List<WebElement> options = driver.findElements(By.id("dropdownMenuButton1"));
+        WebElement target = options.get(2);
+        target.click();
+
+        Thread.sleep(3000);
+        WebElement optionsList = driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
+                "/tr[2" +
+                "]/td[8]/div/ul");
+// //*[@id="supplierPage"]/table/tbody/tr[3]/td[5]/div/ul/li[2]/a
+        List<WebElement> listItems = optionsList.findElements(By.tagName("li"));
+
+        WebElement deleteCell = listItems.get(1);
+        deleteCell.findElement(By.xpath("//*[@id=\"productPage\"]/table/tbody/tr[3]/td[8]/div/ul" +
+                "/li[2]/a")).click();
+
+        Thread.sleep(3000);
+        assertTrue(driver.findElementsByXPath("//*[@id=\"productPage\"]/table/tbody/tr[3]").size() < 1);
         driver.quit();
     }
 }
