@@ -83,39 +83,22 @@ public class SeleniumProductTests {
         confirm.click();
 
         Thread.sleep(5000);
+        assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
+                            "/tr[3]/td[1]").getText(), is("116723"));
+        assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
+                            "/tr[3]/td[2]").getText(), is("CC Lemon"));
+        assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
+                            "/tr[3]/td[3]").getText(), is("Suntory"));
+        assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
+                            "/tr[3]/td[4]").getText(), is("6.78"));
+        assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
+                            "/tr[3]/td[5]").getText(), is("12"));
 
-        for(int i=1 ; i<8 ; i++){
-            switch(i){
-                case 1:
-                    assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
-                            "/tr[3]/td["+i+"]").getText(), is("116723"));
-                    break;
-                case 2:
-                    assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
-                            "/tr[3]/td["+i+"]").getText(), is("CC Lemon"));
-                    break;
-                case 3:
-                    assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
-                            "/tr[3]/td["+i+"]").getText(), is("Suntory"));
-                    break;
-                case 4:
-                    assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
-                            "/tr[3]/td["+i+"]").getText(), is("6.78"));
-                    break;
-                case 5:
-                    assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
-                            "/tr[3]/td["+i+"]").getText(), is("12"));
-                    break;
-                case 6:
-                    assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
-                            "/tr[3]/td["+i+"]").getText(), is("3"));
-                    break;
-                case 7:
-                    assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
-                            "/tr[3]/td["+i+"]").getText(), is("1"));
-                    break;
-            }
-        }
+        assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
+                            "/tr[3]/td[6]").getText(), is("3"));
+
+        assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
+                            "/tr[3]/td[7]").getText(), is("1"));
 
         driver.quit();
     }

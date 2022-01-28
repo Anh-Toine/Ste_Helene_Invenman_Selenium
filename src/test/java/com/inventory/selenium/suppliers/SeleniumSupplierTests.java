@@ -71,27 +71,15 @@ public class SeleniumSupplierTests {
         confirm.click();
 
         Thread.sleep(5000);
-        for(int i=1 ; i<5 ; i++){
-            switch(i){
-                case 1:
-                    assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
-                            "/tr[5]/td["+i+"]").getText(), is("La Bananane Bleue"));
-                    break;
-                case 2:
-                    assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
-                            "/tr[5]/td["+i+"]").getText(), is("Joel N. Mansol"));
-                    break;
-                case 3:
-                    assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
-                            "/tr[5]/td["+i+"]").getText(), is("joelnellek@yahoo.com"));
-                    break;
-                case 4:
-                    assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
-                            "/tr[5]/td["+i+"]").getText(), is("555-5555-5555"));
-                    break;
+        assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
+                            "/tr[5]/td[1]").getText(), is("La Bananane Bleue"));
+        assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
+                            "/tr[5]/td[2]").getText(), is("Joel N. Mansol"));
+        assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
+                            "/tr[5]/td[3]").getText(), is("joelnellek@yahoo.com"));
+        assertThat(driver.findElementByXPath("//*[@id=\"productPage\"]/table/tbody" +
+                            "/tr[5]/td[4]").getText(), is("555-5555-5555"));
 
-            }
-        }
         driver.quit();
     }
 }
