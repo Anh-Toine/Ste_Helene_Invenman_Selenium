@@ -68,4 +68,49 @@ public class SeleniumLoginTests {
 
         driver.quit();
     }
+    @Test
+    public void search_product_test() throws InterruptedException {
+        Thread.sleep(5000);//*[@id="app"]/div/div/div[1]/ul/div[1]/a
+        
+        WebElement options = driver.findElementByXPath("//*[@id='app']/div/div/div[1]/ul/div[1]/a");
+        options.click();
+        Thread.sleep(5000);
+        WebElement username = driver.findElementByXPath("//*[@id='floatingInput']");
+        username.sendKeys("userNam");
+        WebElement password = driver.findElementByXPath("//*[@id='floatingPassword']");
+        password.sendKeys("123456");
+        WebElement enter = driver.findElementByXPath("//*[@id='loginButton']");
+        enter.click();
+        Thread.sleep(5000);
+
+
+        WebElement searchIn = driver.findElementByXPath("//*[@id='myInput']");
+        searchIn.sendKeys("pepsi");
+        Thread.sleep(5000);
+
+        driver.close();
+    }
+
+    @Test
+    public void filter_product_test() throws InterruptedException {
+        Thread.sleep(5000);//*[@id="app"]/div/div/div[1]/ul/div[1]/a
+        
+        WebElement options = driver.findElementByXPath("//*[@id='app']/div/div/div[1]/ul/div[1]/a");
+        options.click();
+        Thread.sleep(5000);
+        WebElement username = driver.findElementByXPath("//*[@id='floatingInput']");
+        username.sendKeys("userNam");
+        WebElement password = driver.findElementByXPath("//*[@id='floatingPassword']");
+        password.sendKeys("123456");
+        WebElement enter = driver.findElementByXPath("//*[@id='loginButton']");
+        enter.click();
+        Thread.sleep(5000);
+
+
+        WebElement productcolo = driver.findElementByXPath("//*[@id='myTable']/thead/tr/th[3]");
+        productcolo.click();
+        Thread.sleep(5000);
+
+        driver.close();
+    }
 }
